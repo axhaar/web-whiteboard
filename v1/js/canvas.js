@@ -72,3 +72,24 @@ $('.downloadPng').on('click', function () {
         .toDataURL('image/png');
     triggerDownload(imgURI, 'myCanvas.png');
 });
+
+$('.downloadJpg').on('click', function () {
+    let srcCanvas = document.getElementById('myCanvas');
+
+
+    let destinationCanvas = document.createElement("canvas");
+    destinationCanvas.width = srcCanvas.width;
+    destinationCanvas.height = srcCanvas.height;
+
+    destCtx = destinationCanvas.getContext('2d');
+
+    destCtx.fillStyle = "#FFFFFF";
+    destCtx.fillRect(0, 0, srcCanvas.width, srcCanvas.height);
+
+    destCtx.drawImage(srcCanvas, 0, 0);
+
+    let imgURI = destinationCanvas.toDataURL('image/jpeg', 0.8);
+    // let imgURI = canvas
+    //   .toDataURL('image/jpeg', 0.8);
+    triggerDownload(imgURI, 'myCanvas.jpg');
+});
