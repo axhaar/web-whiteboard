@@ -18,6 +18,13 @@ function InitThis()
             Draw(e.pageX - $(this).offset().left, e.pageY - $(this).offset().top, true);
         }
     });
+
+    $('#myCanvas').mouseup(function (e) {
+        mousePressed = false;
+    });
+    $('#myCanvas').mouseleave(function (e) {
+        mousePressed = false;
+    });
 }
 
 function Draw(x, y, isDown) {
