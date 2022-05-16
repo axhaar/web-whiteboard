@@ -83,11 +83,14 @@ $('.downloadJpg').on('click', function () {
 
     destCtx = destinationCanvas.getContext('2d');
 
+    //create a rectangle with the desired color
     destCtx.fillStyle = "#FFFFFF";
     destCtx.fillRect(0, 0, srcCanvas.width, srcCanvas.height);
 
+    //draw the original canvas onto the destination canvas
     destCtx.drawImage(srcCanvas, 0, 0);
 
+    //finally use the destinationCanvas.toDataURL() method to get the desired output
     let imgURI = destinationCanvas.toDataURL('image/jpeg', 0.8);
     // let imgURI = canvas
     //   .toDataURL('image/jpeg', 0.8);
