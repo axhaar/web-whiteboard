@@ -41,6 +41,12 @@ function Draw(x, y, isDown) {
     lastX = x; lastY = y;
 }
 
+function clearArea() {
+    // Use the identity matrix while clearing the canvas
+    ctx.setTransform(1, 0, 0, 1, 0, 0);
+    ctx.clearRect(0, 0, ctx.canvas.width, ctx.canvas.height);
+}
+
 $(function () {
     InitThis();
 })
@@ -48,4 +54,21 @@ $(function () {
 $('#deleteButton').on('click', function () {
     ctx.setTransform(1, 0, 0, 1, 0, 0);
     ctx.clearRect(0, 0, ctx.canvas.width, ctx.canvas.height);
+});
+
+function triggerDownload(imgURI, name) {
+    let a = document.createElement('a');
+    a.setAttribute('download', name);
+    a.setAttribute('href', imgURI);
+    a.setAttribute('target', '_blank');
+    // a.dispatchEvent(evt);
+    a.click();
+    a.remove();
+}
+
+$('.downloadPng').on('click', function () {
+    let canvas = document.getElementById('myCanvas');
+    let imgURI = canvas
+        .toDataURL('image/png');
+    triggerDownload(imgURI, 'myCanvas.png');
 });
